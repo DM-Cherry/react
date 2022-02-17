@@ -3,9 +3,9 @@ import { SearchPanel } from "./search-panel";
 import { List } from "./list";
 import { useEffect, useState } from "react";
 import { clearObject, useMount, useDebounce } from "../../utils";
-import qs from "qs";
-
+import * as qs from "qs";
 const apiUrl = process.env.REACT_APP_API_URL;
+// 希望在静态代码中就可以找到一些错误 -> 强类型
 export const ProjectListScreen = () => {
   const [param, setParam] = useState({
     name: "",

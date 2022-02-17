@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
 
-export const isFalsy = (value) => (value === 0 ? false : !value);
+export const isFalsy = (value: any) => (value === 0 ? false : !value);
 // 写函数不要污染传入的对象
-export const clearObject = (object) => {
+export const clearObject = (object: object) => {
   // Object.assign({}, object)
   const result = { ...object };
   Object.keys(object).forEach((key) => {
+    // @ts-ignore
     const value = object[key];
     // 0
     if (isFalsy(value)) {
+      // @ts-ignore
       delete result[key];
     }
   });
   return result;
 };
 
-export const useMount = (callback) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
 };
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     // 每次在value变化以后，设置一个定时器
